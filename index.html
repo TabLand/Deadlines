@@ -1,0 +1,57 @@
+
+<!-- saved from url=(0044)http://student.city.ac.uk/~abnd198/time.html -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Counting Down!!</title>		
+		<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+	<body onload="timerTill()">
+		<div id="time"></div>
+		<script>
+			var dates = new Array();
+			//year -actual , month from 0-11, days normal , hours normal, minutes normal
+			
+			dates.push([new Date("29 Nov 2013 9:00 am").getTime(), " IT security Coursework "]);
+			dates.push([new Date("4 Dec 2013 10:00 am").getTime(), " Theory of Computation Coursework 2"]);
+			dates.push([new Date("5 Dec 2013 9:00 am").getTime(), " C++ Coursework "]);	
+			dates.push([new Date("9 Dec 2013 9:00 am").getTime(), " Advanced Games Design Coursework "]);
+			dates.push([new Date("20 Nov 2013 9:00 am").getTime(), " AI Robocup "]);
+			dates.push([new Date("3 Nov 2013 23:59").getTime(), " IT security MCQ 2 "]);
+			dates.push([new Date("31 Oct 2013 9:00 am").getTime(), " Theory of Computation Coursework "]);
+			dates.push([new Date("25 Oct 2013 9:00 pm").getTime(), " PDD submission "]);
+			dates.push([new Date("18 Apr 2013 4:00 pm").getTime(), " Team Project "]);
+			
+			setInterval("timerTillLoop()",100);
+			function timerTillLoop(){
+				timerErase();
+				for(key in dates){
+				  timerTill(dates[key][0],dates[key][1]);					
+				}	
+			}
+			function timerErase(){
+				document.getElementById("time").innerHTML = "";
+			}
+			function timerTill(d, subject)
+			{
+				var now = Math.round((new Date()).getTime() );
+				var diff = new Date (d - now);
+				var txt = "";
+				var txt2 = "";
+				if((new Date()).getTime() >= d){
+				//past
+					txt = " has been overdue";
+					txt2  = " since ";
+					diff = new Date(now - d);
+				}
+				else {
+					txt = " is due";
+					txt2 = " left till ";
+				}
+				document.getElementById("time").innerHTML += "<h1>"+subject+ " " + (new Date(d)) + "</h1>" + (diff.getFullYear()-1970) + " Year(s), " +  (diff.getMonth()) + " Month(s), " + (diff.getDate() -1) + " Day(s), " + diff.getHours() + " Hour(s), " + diff.getMinutes() + " Minute(s), " + diff.getSeconds() + "." + diff.getMilliseconds() + " Second(s) " + txt2 + subject +txt+".<br/>" ;
+			}
+		</script>
+		<a href="index.html">&lt;&lt;Back</a>
+	</body>
+</html>
